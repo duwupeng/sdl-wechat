@@ -9,4 +9,10 @@ public class IndexController {
     String index(){
         return "index";
     }
+
+
+    @RequestMapping("/wechat")
+    String wechat(){
+        return "wechat";
+    }
 }

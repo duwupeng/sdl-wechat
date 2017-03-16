@@ -51,6 +51,12 @@ public class ContractController {
         fileMaps.put(25,"其它协议");
     }
 
+    @RequestMapping(value = "category",method = RequestMethod.GET)
+    public String category(Model model){
+        model.addAttribute("categories", fileMaps);
+        return "category";
+    }
+
     @RequestMapping(value = "/contract/{category}",method = RequestMethod.GET)
     public String showProduct(Model model,@PathVariable Integer category){
         String dirName = fileMaps.get(category);
@@ -59,7 +65,6 @@ public class ContractController {
         List<String> fileNames = Arrays.stream(files).map(file -> file.getName()).collect(Collectors.toList());
         model.addAttribute("contracts", fileNames);
         model.addAttribute("category", category);
-
         return "contracts";
     }
     /**
