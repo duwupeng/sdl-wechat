@@ -11,9 +11,9 @@ spring:
       ddl-auto: create-drop
 
 datasource.zj:
-  url: jdbc:mysql://192.168.1.158:3306/sdl-wechat?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+  url: jdbc:mysql://localhost:3306/sdlwechat?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=UTF-8&useSSL=false
   username: root
-  password: 123456
+  password:
   driver-class-name: com.mysql.cj.jdbc.Driver
   max-active: 30
   max-idle: 10
