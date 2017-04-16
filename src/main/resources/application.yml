@@ -1,6 +1,6 @@
 #server port
 server:
-     port: 9394
+     port: 80
 
 #service name
 spring:
