@@ -41,4 +41,5 @@ Thumbs.db
 atlassian-ide-plugin.xml
 target
 
-src/main/resources/application.yml
+
+application.yml
