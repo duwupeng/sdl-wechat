@@ -23,7 +23,7 @@ public class WxPubController {//此处TOKEN即我们刚刚所填的token
      * @param echostr
      * @return echostr
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/wechat/tokenVerify", method = RequestMethod.GET)
     public String checkName(@RequestParam(name = "signature") String signature,
                             @RequestParam(name = "timestamp") String timestamp,
                             @RequestParam(name = "nonce") String nonce,
