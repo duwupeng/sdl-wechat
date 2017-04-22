@@ -51,7 +51,7 @@ public class ContractController {
         fileMaps.put(25,"其它协议");
     }
 
-    @RequestMapping(value = "category",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public String category(Model model){
         model.addAttribute("categories", fileMaps);
         return "category";
