@@ -1,10 +1,7 @@
 package com.lg.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -26,7 +23,7 @@ public class WxPubController {//此处TOKEN即我们刚刚所填的token
      * @param echostr
      * @return echostr
      */
-    @PostMapping(value = "/wechat/tokenVerify")
+    @GetMapping(value = "/wechat/tokenVerify")
     public String checkName(@RequestParam(name = "signature") String signature,
                             @RequestParam(name = "timestamp") String timestamp,
                             @RequestParam(name = "nonce") String nonce,
