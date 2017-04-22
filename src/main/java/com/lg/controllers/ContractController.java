@@ -89,7 +89,7 @@ public class ContractController {
         try {
             res.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName,"UTF-8")+".doc" );
 
-            File file = new File(attachmentPath+ File.separator +"sdl_docs"+ File.separator
+            File file = new File(attachmentPath+ File.separator
                     +fileMaps.get(contractId)
                     +File.separator+ fileName+".doc" );
             OutputStream os = null;
