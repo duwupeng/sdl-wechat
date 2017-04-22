@@ -1,5 +1,6 @@
 package com.lg.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 /**
  * Created by eric.du on 2017-3-16.
  */
+@Controller
 public class WxPubController {//此处TOKEN即我们刚刚所填的token
     private String TOKEN = "sdlWechat";
 
