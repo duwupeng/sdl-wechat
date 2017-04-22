@@ -12,6 +12,8 @@ spring:
   thymeleaf:
     cache:  false
 
+contractFile:
+    attachmentPath: /data/attachments/sdl_docs
 
 
 datasource.zj:

@@ -10,6 +10,9 @@ spring:
     hibernate:
       ddl-auto: create-drop
 
+contractFile:
+    attachmentPath: /data/attachments/sdl_docs
+
 datasource.zj:
   url: jdbc:mysql://localhost:3306/sdlwechat?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=UTF-8&useSSL=false
   username: root
