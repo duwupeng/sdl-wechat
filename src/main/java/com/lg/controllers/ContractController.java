@@ -61,7 +61,7 @@ public class ContractController {
     @RequestMapping(value = "/contract/{category}",method = RequestMethod.GET)
     public String showProduct(Model model,@PathVariable Integer category){
         String dirName = fileMaps.get(category);
-        File dir  = new File(attachmentPath+File.separator+"sdl_docs"+File.separator+dirName);
+        File dir  = new File(attachmentPath+File.separator+dirName);
         System.out.println("dirName－》" + dirName);
         System.out.println("dir－》" + dir.getPath());
 
