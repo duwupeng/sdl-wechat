@@ -4,4 +4,5 @@ spring:
     #active: dev01
     ##Switch to prod if want to run it for prod env.
     ##Or add application-xxx and set active: xxx as you will.
-    active: dev02
+    #active: dev02
+    active: prod
