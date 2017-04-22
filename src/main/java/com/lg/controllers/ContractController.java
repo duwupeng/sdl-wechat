@@ -61,8 +61,14 @@ public class ContractController {
     public String showProduct(Model model,@PathVariable Integer category){
         String dirName = fileMaps.get(category);
         File dir  = new File(attachmentPath+File.separator+"sdl_docs"+File.separator+dirName);
+        System.out.println("dirName－》" + dirName);
+        System.out.println("dir－》" + dir.getPath());
+
         File[]   files = dir.listFiles();
         List<String> fileNames = Arrays.stream(files).map(file -> file.getName()).collect(Collectors.toList());
+        System.out.println("fileNames－》" + fileNames);
+        System.out.println("category－》" + category);
+
         model.addAttribute("contracts", fileNames);
         model.addAttribute("category", category);
         return "contracts";
