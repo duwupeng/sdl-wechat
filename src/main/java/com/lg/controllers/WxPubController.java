@@ -1,5 +1,6 @@
 package com.lg.controllers;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +24,7 @@ public class WxPubController {//此处TOKEN即我们刚刚所填的token
      * @param echostr
      * @return echostr
      */
-    @RequestMapping(value = "/wechat/tokenVerify")
+    @PostMapping(value = "/wechat/tokenVerify")
     public String checkName(@RequestParam(name = "signature") String signature,
                             @RequestParam(name = "timestamp") String timestamp,
                             @RequestParam(name = "nonce") String nonce,
