@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @Controller
 public class ContractController {
 
+    @Value("${contractFile.attachmentPath}")
     private String attachmentPath;
 
     static Map<Integer, String> fileMaps = new HashMap<>();
