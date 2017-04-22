@@ -1,37 +1,7 @@
-#server port
-server:
-     port: 80
-
-#service name
 spring:
-  application:
-    name: zj-data-center
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-
-datasource.zj:
-  url: jdbc:mysql://localhost:3306/sdlwechat?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=UTF-8&useSSL=false
-  username: root
-  password:
-  driver-class-name: com.mysql.cj.jdbc.Driver
-  max-active: 30
-  max-idle: 10
-  max-wait: 5000
-  initial-size: 5
-  validation-query: SELECT 1
-  type: com.alibaba.druid.pool.DruidDataSource
-#druid
-druid:
-  loginUsername: admin
-  loginPassword: admin
-
-#spring.datasource.url= jdbc:postgresql://192.168.1.158:3306/dataCenterDb
-#spring.datasource.username=root
-#spring.datasource.password=123456
-#
-#spring.jpa.hibernate.ddl-auto=create-drop
-logging:
-   level:
-      com:
-         zj: DEBUG
+  profiles:
+    ##Switch to prod if want to run it for prod env.
+    #active: dev01
+    ##Switch to prod if want to run it for prod env.
+    ##Or add application-xxx and set active: xxx as you will.
+    active: prod
