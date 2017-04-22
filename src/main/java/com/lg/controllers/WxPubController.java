@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  * Created by eric.du on 2017-3-16.
  */
-@Controller
+@RestController
 public class WxPubController {//此处TOKEN即我们刚刚所填的token
     private String TOKEN = "sdlWechat";
 
