@@ -25,30 +25,30 @@ public class ContractController {
     static Map<Integer, String> fileMaps = new HashMap<>();
     static {
         fileMaps.put(1,"买卖合同");
-        fileMaps.put(2,"供给能源合同");
-        fileMaps.put(3,"借款合同");
-        fileMaps.put(4,"担保合同");
-        fileMaps.put(5,"租赁与融资租赁");
-        fileMaps.put(6,"加工承揽合同");
-        fileMaps.put(7,"建设工程合同");
-        fileMaps.put(8,"运输合同");
-        fileMaps.put(9,"技术合同");
-        fileMaps.put(10,"委托行纪居间合同");
-        fileMaps.put(11,"涉外合同");
-        fileMaps.put(12,"保险合同");
-        fileMaps.put(13,"银行业务合同");
-        fileMaps.put(14,"信托合同");
-        fileMaps.put(15,"证券期货合同");
-        fileMaps.put(16,"网络信息技术合同");
-        fileMaps.put(17,"知识产权合同");
-        fileMaps.put(18,"教育文化合同");
-        fileMaps.put(19,"娱乐体育合同");
-        fileMaps.put(20,"海事海商合同");
-        fileMaps.put(21,"服务合同");
-        fileMaps.put(22,"企业组织经营合同");
-        fileMaps.put(23,"劳动关系合同");
+//        fileMaps.put(2,"供给能源合同");
+//        fileMaps.put(3,"借款合同");
+//        fileMaps.put(4,"担保合同");
+//        fileMaps.put(5,"租赁与融资租赁");
+//        fileMaps.put(6,"加工承揽合同");
+//        fileMaps.put(7,"建设工程合同");
+//        fileMaps.put(8,"运输合同");
+//        fileMaps.put(9,"技术合同");
+//        fileMaps.put(10,"委托行纪居间合同");
+//        fileMaps.put(11,"涉外合同");
+//        fileMaps.put(12,"保险合同");
+//        fileMaps.put(13,"银行业务合同");
+//        fileMaps.put(14,"信托合同");
+//        fileMaps.put(15,"证券期货合同");
+//        fileMaps.put(16,"网络信息技术合同");
+//        fileMaps.put(17,"知识产权合同");
+//        fileMaps.put(18,"教育文化合同");
+//        fileMaps.put(19,"娱乐体育合同");
+//        fileMaps.put(20,"海事海商合同");
+//        fileMaps.put(21,"服务合同");
+//        fileMaps.put(22,"企业组织经营合同");
+        fileMaps.put(23,"劳动合同");
         fileMaps.put(24,"身份关系协议");
-        fileMaps.put(25,"其它协议");
+//        fileMaps.put(25,"其它协议");
     }
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
