@@ -55,7 +55,7 @@ public class WxPayController {
         System.out.println("玩家准备填写充值信息了:" + request);
 
         //重定向Url
-        String redirecUri = URLEncoder.encode(WechatConst.baseUrl + "/toPay.do");
+        String redirecUri = URLEncoder.encode(WechatConst.baseUrl + "/wechatpay/toPay.do");
         //用于获取成员信息的微信返回码
         String code = null;
         if( request.getParameter("code")!=null ){
@@ -152,7 +152,7 @@ public class WxPayController {
            //客户端ip
             String ip = request.getRemoteAddr();
             //支付成功后回调的url地址
-            String notify_url = "http://easygoleagal.com.cn/callback";
+            String notify_url = "http://easygoleagal.com.cn//wechatpay/callback";
 
             //统一下单
             String strResult = WeChatUtil.unifiedorder("testPay", out_trade_no, total_fee, ip, notify_url,openId);
@@ -215,7 +215,7 @@ public class WxPayController {
      * @param request
      * @return
      */
-    @RequestMapping("/callback")
+    @RequestMapping("wechatpay/callback")
     public void callBack(HttpServletRequest request, HttpServletResponse response){
    response.setContentType("text/xml;charset=UTF-8");
     try {
