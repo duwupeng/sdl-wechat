@@ -19,14 +19,14 @@
   var openid = [[${openId}]]
   alert("openid: " + openid);
 
-    <!--wx.config({-->
-        <!--debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。-->
-        <!--appId: '', // 必填，公众号的唯一标识-->
-        <!--timestamp: '', // 必填，生成签名的时间戳-->
-        <!--nonceStr: '', // 必填，生成签名的随机串-->
-        <!--signature: '',// 必填，签名，见附录1-->
-        <!--jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2-->
-    <!--});-->
+    wx.config({
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: 'wx2d10663316262e38', // 必填，公众号的唯一标识
+        timestamp: '', // 必填，生成签名的时间戳
+        nonceStr: '', // 必填，生成签名的随机串
+        signature: '',// 必填，签名，见附录1
+        jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
 
     var prepay_id ;
     var sign ;
@@ -53,17 +53,18 @@
                     　　nonceStr = data.nonce_str;
                     　　packageStr = data.packageStr;
                     　　signType = data.signType;
-                        console.log("appId->"+ appId);
-                        console.log("sign->"+ sign);
-                        console.log("timeStamp->"+timeStamp);
-                        console.log("nonceStr->"+nonceStr);
-                        console.log("packageStr->"+packageStr);
-                        console.log("signType->"+signType);
+                        alert("appId->"+ appId);
+                        alert("sign->"+ sign);
+                        alert("timeStamp->"+timeStamp);
+                        alert("nonceStr->"+nonceStr);
+                        alert("packageStr->"+packageStr);
+                        alert("signType->"+signType);
 　　　　　　　　　　　　　　//调起微信支付控件
          　　　 callpay();
         　　}else{
         　　　　alert("统一下单失败");
-    　　　　　　 }
+               alert("data: "+ data);
+    　　　　　}
         }
     });
     }
