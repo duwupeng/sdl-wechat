@@ -1,104 +1,125 @@
-//package com.lg.controllers;
-//
-//import com.lg.consts.WechatConst;
-//import com.lg.domain.WeixinLoginUser;
-//import com.lg.services.Oauth;
-//import com.lg.wechat.model.message.req.UserInfo;
-//import com.lg.wechat.model.message.req.WxPaySendData;
-//import com.lg.wechat.util.WeChatUtil;
-//import com.lg.wechat.util.WxSign;
-//import com.thoughtworks.xstream.XStream;
-//import com.thoughtworks.xstream.io.xml.DomDriver;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.ResponseBody;
-//import org.springframework.web.servlet.ModelAndView;
-//
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import java.io.IOException;
-//import java.io.InputStream;
-//import java.net.URLEncoder;
-//import java.util.Map;
-//import java.util.SortedMap;
-//import java.util.TreeMap;
-//
-///**
-// * Created by mac on 17/3/17.
-// */
-//public class WxPayController {
-//
-//    @RequestMapping("toPay.do")
-//    public ModelAndView toPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//
-//        ModelAndView modelAndView = new ModelAndView();
-////        logger.debug("玩家准备填写充值信息了:" + HttpUtil.buildOriginalURL(request));
-//
-//        //重定向Url
-//        String redirecUri = URLEncoder.encode(WechatConst.baseUrl + "/wxOfficialAccountsPay/toInputAccountInfo.do");
-//        //用于获取成员信息的微信返回码
-//        String code = null;
-//        if( request.getParameter("code")!=null ){
-//            code =request.getParameter("code");
-//        }
-//        if( code == null) {
-//            //授权
-//            return authorization(redirecUri);
-//        }
-//        code =request.getParameter("code");
-//        // 获取用户信息
+package com.lg.controllers;
+
+import com.alibaba.fastjson.JSON;
+import com.lg.consts.WechatConst;
+import com.lg.domain.WeixinLoginUser;
+import com.lg.services.Oauth;
+import com.lg.wechat.model.message.req.UserInfo;
+import com.lg.wechat.model.message.req.WxPaySendData;
+import com.lg.wechat.util.WxSign;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+/**
+ * Created by mac on 17/3/17.
+ */
+@Controller
+public class WxPayController {
+
+    @RequestMapping("/jsapi")
+    String wechat(){
+        return "jsapi";
+    }
+
+    /**
+     * 主要是拿openId
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("toPay.do")
+    public ModelAndView toPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        ModelAndView modelAndView = new ModelAndView();
+        System.out.println("玩家准备填写充值信息了:" + request);
+
+        //重定向Url
+        String redirecUri = URLEncoder.encode(WechatConst.baseUrl + "/toPay.do");
+        //用于获取成员信息的微信返回码
+        String code = null;
+        if( request.getParameter("code")!=null ){
+            code =request.getParameter("code");
+        }
+        if( code == null) {
+            //授权
+            return authorization(redirecUri);
+        }
+        code =request.getParameter("code");
+
+        System.out.println("授权code:" + code);
+
+        // 获取用户信息
 //        WeixinLoginUser weixinLoginUser = getWeixinLoginUser(code);
 //
-////        modelAndView.addObject("openId",des.getEncString(weixinLoginUser.getOpenID()));
-//        // 跳转到支付界面
-//        String viewName = "/wxOfficialAccountsPay/pay";
-//        modelAndView.setViewName(viewName);
-//        return modelAndView;
-//    }
+//        modelAndView.addObject("openId",weixinLoginUser.getOpenID());
 //
-//    /**
-//     * 授权方法
-//     * @param redirecUri 重定向链接
-//     *
-//     * */
-//    private ModelAndView authorization(String redirecUri) {
-//        String siteURL="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid="
-//                +WechatConst.APPID
-//                +"&redirect_uri="+redirecUri+"&response_type=code&scope=snsapi_userinfo&state=1234#wechat_redirect";
-////        logger.debug("授权路径：[ "+siteURL+" ]");
-//        return new ModelAndView(siteURL);
-//    }
+//        System.out.println("拿到openId:" + weixinLoginUser.getOpenID());
 //
-//
-//    /**
-//     * 获取微信授权登陆用户
-//     * @param code
-//     * @return
-//     * @throws Exception
-//     */
-//    private WeixinLoginUser getWeixinLoginUser(String code) throws Exception {
-////        logger.debug("由code获取授权用户信息");
-//        Oauth oauth = new Oauth();
-//        // 由code获取access_token等信息
-//        String str = oauth.getToken(code,WechatConst.APPID, WechatConst.APP_SECRET);
-//        // 解析返回的json数据,获取所需的信息
-//        String openID = (String) JSON.parseObject(str, Map.class).get("openid");
-//        String accessToken = (String) JSON.parseObject(str, Map.class).get("access_token");
-//        String refreshToken = (String) JSON.parseObject(str, Map.class).get("refresh_token");
-//        // 用openid,access_token获取用户的信息,返回userinfo对象
-//        UserInfo userInfo = oauth.getSnsUserInfo(openID, accessToken);
-//        // 将用户信息放入登录session中
-//        WeixinLoginUser weixinLoginUser = new WeixinLoginUser();
-//        weixinLoginUser.setOpenID(openID);
-//        weixinLoginUser.setUnionID(userInfo.getUnionid());
-//        weixinLoginUser.setHeadImageUrl(userInfo.getHeadimgurl());
-//        weixinLoginUser.setNickName(userInfo.getNickname());
-//        weixinLoginUser.setRefreshToken(refreshToken);
-//        //
-//        int siteID = WechatConst.siteID;
-//        weixinLoginUser.setSiteID(siteID);
-//        // 返回weixinLoginUser对象
-//        return weixinLoginUser;
-//    }
+        // 跳转到支付界面
+        String viewName = "pay";
+        modelAndView.setViewName(viewName);
+        return modelAndView;
+    }
+
+    /**
+     * 授权方法
+     * @param redirecUri 重定向链接
+     *
+     * */
+    private ModelAndView authorization(String redirecUri) {
+        String siteURL="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid="
+                +WechatConst.appID
+                +"&redirect_uri="+redirecUri+"&response_type=code&scope=snsapi_userinfo&state=1234#wechat_redirect";
+        System.out.println("授权路径:" + siteURL);
+        return new ModelAndView(siteURL);
+    }
+
+
+    /**
+     * 获取微信授权登陆用户
+     * @param code
+     * @return
+     * @throws Exception
+     */
+    private WeixinLoginUser getWeixinLoginUser(String code) throws Exception {
+//        logger.debug("由code获取授权用户信息");
+        Oauth oauth = new Oauth();
+        // 由code获取access_token等信息
+        String str = oauth.getToken(code,WechatConst.appID, WechatConst.appSecret);
+        // 解析返回的json数据,获取所需的信息
+        String openID = (String) JSON.parseObject(str, Map.class).get("openid");
+        String accessToken = (String) JSON.parseObject(str, Map.class).get("access_token");
+        String refreshToken = (String) JSON.parseObject(str, Map.class).get("refresh_token");
+
+        // 用openid,access_token获取用户的信息,返回userinfo对象
+        UserInfo userInfo = oauth.getSnsUserInfo(openID, accessToken);
+        // 将用户信息放入登录session中
+        WeixinLoginUser weixinLoginUser = new WeixinLoginUser();
+        weixinLoginUser.setOpenID(openID);
+        weixinLoginUser.setUnionID(userInfo.getUnionid());
+        weixinLoginUser.setHeadImageUrl(userInfo.getHeadimgurl());
+        weixinLoginUser.setNickName(userInfo.getNickname());
+        weixinLoginUser.setRefreshToken(refreshToken);
+        //
+        int siteID = WechatConst.siteID;
+        weixinLoginUser.setSiteID(siteID);
+        // 返回weixinLoginUser对象
+        return weixinLoginUser;
+    }
 //
 //
 //    /**
@@ -246,4 +267,4 @@
 //            e.printStackTrace();
 //        }
 //    }
-//}
+}

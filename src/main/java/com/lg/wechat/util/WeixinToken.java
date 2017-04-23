@@ -1,8 +1,5 @@
 package com.lg.wechat.util;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
@@ -38,8 +35,8 @@ public class WeixinToken {
             http.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             http.setDoOutput(true);
             http.setDoInput(true);
-            System.setProperty("sun.net.client.defaultConnectTimeout", "30000");// 连接超时30�?
-            System.setProperty("sun.net.client.defaultReadTimeout", "30000"); // 读取超时30�?
+            System.setProperty("sun.net.client.defaultConnectTimeout", "30000");// 连接超时30?
+            System.setProperty("sun.net.client.defaultReadTimeout", "30000"); // 读取超时30?
 //            链接
             http.connect();
             //获取返回值json字节流
@@ -50,8 +47,8 @@ public class WeixinToken {
             //转化成字符串
             String message = new String(jsonBytes, "UTF-8");
 //            转化成json对象然后返回accessToken属性的值
-            JsonObject demoJson = new Gson().fromJson(message, JsonObject.class);
-            accessToken = demoJson.get("access_token").getAsString();
+//            JsonObject demoJson = new Gson().fromJson(message, JsonObject.class);
+//            accessToken = demoJson.get("access_token").getAsString();
             System.out.println(accessToken);
             is.close();
         } catch (Exception e) {
