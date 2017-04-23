@@ -1,9 +1,14 @@
 package com.lg.wechat.util;
 
 import com.lg.wechat.model.message.req.WxPaySendData;
+import com.lg.wechat.model.message.req.WxPrepayData;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.StringReader;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -38,7 +43,7 @@ public class WxSign {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         String xml="<xml><return_code><![CDATA[SUCCESS]]></return_code>\n" +
                 "<return_msg><![CDATA[OK]]></return_msg>\n" +
                 "<appid><![CDATA[wx2d10663316262e38]]></appid>\n" +
@@ -55,6 +60,10 @@ public class WxSign {
         stream.alias("xml", WxPaySendData.class);
         WxPaySendData wxReturnData = (WxPaySendData)stream.fromXML(xml);
 
-        System.out.println(wxReturnData);
+        System.out.println(wxReturnData.getAppid());
+
+//        JAXBContext context = JAXBContext.newInstance(WxPrepayData.class);
+//        Unmarshaller unmarshaller = context.createUnmarshaller();
+//        WxPrepayData student = (WxPrepayData)unmarshaller.unmarshal(new StringReader(xml));
     }
 }
