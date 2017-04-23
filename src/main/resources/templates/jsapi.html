@@ -37,7 +37,6 @@
     var signType ;
 
     function pay(){
-
         var url = 'wechatpay/pay';
         $.ajax({
         type:"post",
@@ -45,7 +44,6 @@
         dataType:"json",
         data:{openId: openid },
         success:function(data) {
-
         　　if(data.result_code == 'SUCCESS'){
                     　　appId = data.appid;
         　　　　         sign = data.sign;
