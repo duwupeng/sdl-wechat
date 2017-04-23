@@ -83,7 +83,10 @@ public class WxPayController {
     private ModelAndView authorization(String redirecUri) {
         String siteURL="redirect:https://open.weixin.qq.com/connect/oauth2/authorize?appid="
                 +WechatConst.appID
-                +"&redirect_uri="+redirecUri+"&response_type=code&scope=snsapi_userinfo&state=1234#wechat_redirect";
+                +"&redirect_uri="+redirecUri
+                +"&response_type=code"
+                + "&scope=snsapi_userinfo"
+                + "&state=1234#wechat_redirect";
         System.out.println("授权路径:" + siteURL);
         return new ModelAndView(siteURL);
     }
