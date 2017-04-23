@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.lg.consts.WechatConst;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -156,7 +157,12 @@ public class HttpClientUtil {
 
 
     public static void main(String[] args) {
-        String result = HttpClientUtil.httpPostRequest("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx2d10663316262e38&secret=6d24229c3e2a5a67782ef6e0608f2f80");
+        String result = HttpClientUtil.httpPostRequest(
+                "https://api.weixin.qq.com/sns/oauth2/access_token?" +
+                        "appid=" + WechatConst.appID+
+                        "&secret=SECRET" +WechatConst.appSecret+
+                        "&code=" +"041DIy6s0P8XVa1juI8s0pVi6s0DIy6l"+
+                        "&grant_type=authorization_code");
         System.out.println(result);
     }
 }
