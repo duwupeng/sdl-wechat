@@ -36,7 +36,7 @@ import java.util.TreeMap;
 @Controller
 public class WxPayController {
 
-    @RequestMapping("/jsapi")
+    @RequestMapping("wechatpay/jsapi")
     String wechat(){
         return "jsapi";
     }
@@ -48,7 +48,7 @@ public class WxPayController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("toPay.do")
+    @RequestMapping("wechatpay/toPay")
     public ModelAndView toPay(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         ModelAndView modelAndView = new ModelAndView();
@@ -141,7 +141,7 @@ public class WxPayController {
      　　* @return
      　　 */
    @ResponseBody
-   @RequestMapping({"pay"})
+   @RequestMapping({"wechatpay/pay"})
     public WxPaySendData prePay(HttpServletRequest request, HttpServletResponse response, String openId){
         WxPaySendData result = new WxPaySendData();
         try {
