@@ -176,8 +176,6 @@ public class WxPayController {
             String returnCode = doc.getElementsByTagName("return_code").item(0).getTextContent();
             String prepayId = doc.getElementsByTagName("prepay_id").item(0).getTextContent();
 
-            doc.getElementsByTagName("").item(0).getTextContent();
-
             //两者都为SUCCESS才能获取prepay_id
             if( resultCode.equals("SUCCESS") && returnCode.equals("SUCCESS") ){
                         //业务逻辑，写入订单日志(你自己的业务) .....
