@@ -55,7 +55,7 @@ public class WxPayController {
         System.out.println("玩家准备填写充值信息了:" + request);
 
         //重定向Url
-        String redirecUri = URLEncoder.encode(WechatConst.baseUrl + "/wechatpay/toPay.do");
+        String redirecUri = URLEncoder.encode(WechatConst.baseUrl + "/wechatpay/toPay");
         //用于获取成员信息的微信返回码
         String code = null;
         if( request.getParameter("code")!=null ){
