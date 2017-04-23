@@ -9,6 +9,7 @@
 <body>
 
 <div class="container">
+    <div style="margin:10px 5px 15px 20px;"></div>
     <div th:if="${not #lists.isEmpty(categories)}">
         <h2>合同分类</h2>
         <table class="table table-striped">
@@ -27,12 +28,12 @@
                 <!--<td th:text="${product.price}">price</td>-->
                 <!--<td><a th:href="${ '/product/' + product.id}">View</a></td>-->
                 <td><a th:href="${'/contract/'} + ${category.key}">
-                    <p class="form-control-static" th:value="${category.key}" th:text="${category.value}">x</p>
+                    <p class="form-control-static;font-size:12px;" th:value="${category.key}" th:text="${category.value}"></p>
                 </a></td>
             </tr>
         </table>
 
-        <a href="toPay"> 支付 </a>
+        <a href="toPay" > <font size="12">支付</font> </a>
     </div>
 </div>
 </body>
