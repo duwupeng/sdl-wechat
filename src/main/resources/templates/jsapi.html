@@ -12,7 +12,11 @@
 <body>
 
 <div class="container">
-    <a onclick="pay()" > <font size="12">微信支付</font> </a>
+    <div align="center">
+
+        <a onclick="pay()" > <font size="12">微信支付</font> </a>
+
+    </div>
 </div>
 
 <script th:inline="javascript">
@@ -52,12 +56,6 @@
                     　　nonceStr = data.nonce_str;
                     　　packageStr = data.packageStr;
                     　　signType = data.signType;
-                        alert("appId->"+ appId);
-                        alert("sign->"+ sign);
-                        alert("timeStamp->"+timeStamp);
-                        alert("nonceStr->"+nonceStr);
-                        alert("packageStr->"+packageStr);
-                        alert("signType->"+signType);
 　　　　　　　　　　　　　　//调起微信支付控件
          　　　 callpay();
         　　}else{
