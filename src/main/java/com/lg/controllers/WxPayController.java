@@ -152,6 +152,8 @@ public class WxPayController {
             //统一下单
             String strResult = WeChatUtil.unifiedorder("testPay", out_trade_no, total_fee, ip, notify_url,openId);
 
+            System.out.println("strResult: " + strResult);
+
             //解析xml
              XStream stream = new XStream(new DomDriver());
             stream.alias("xml", WxPaySendData.class);
