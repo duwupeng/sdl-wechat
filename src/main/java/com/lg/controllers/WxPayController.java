@@ -191,7 +191,7 @@ public class WxPayController {
                 result.setPackageStr("prepay_id="+prepayId);
                 result.setSignType("MD5");
 
-        //                WeChatUtil.unifiedorder(1) 下单操作中，也有签名操作，那个只针对统一下单，要区别于下面的paySign
+        //     WeChatUtil.unifiedorder(1) 下单操作中，也有签名操作，那个只针对统一下单，要区别于下面的paySign
                 //第二次签名,将微信返回的数据再进行签名
                 SortedMap<Object,Object> signMap = new TreeMap<Object,Object>();
                 signMap.put("appId", WechatConst.appID);

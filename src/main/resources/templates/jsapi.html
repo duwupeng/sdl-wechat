@@ -48,11 +48,17 @@
 
         　　if(data.result_code == 'SUCCESS'){
                     　　appId = data.appid;
-        　　　　 sign = data.sign;
+        　　　　         sign = data.sign;
                     　　timeStamp = data.timeStamp;
                     　　nonceStr = data.nonce_str;
                     　　packageStr = data.packageStr;
                     　　signType = data.signType;
+                        console.log("appId->"+ appId);
+                        console.log("sign->"+ sign);
+                        console.log("timeStamp->"+timeStamp);
+                        console.log("nonceStr->"+nonceStr);
+                        console.log("packageStr->"+packageStr);
+                        console.log("signType->"+signType);
 　　　　　　　　　　　　　　//调起微信支付控件
          　　　 callpay();
         　　}else{
