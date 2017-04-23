@@ -12,11 +12,11 @@
 <body>
 
 <div class="container">
-    123
+    <input type="button" value="微信支付" onclick="pay()"/>
 </div>
 <script th:inline="javascript">
 
-  var openid = [[${another}]]
+  var openid = [[${openId}]]
   alert("openid: " + openid);
 
     wx.config({
