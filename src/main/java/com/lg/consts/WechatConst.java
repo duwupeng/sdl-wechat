@@ -14,8 +14,7 @@ public interface WechatConst {
     //交易类型
     String TRADE_TYPE = "JSAPI";
 
-    //
-    String baseUrl="http://easygolegal.info";
+    String baseUrl="http://www.easygolegal.com.cn";
 
     int siteID=0;
 }
