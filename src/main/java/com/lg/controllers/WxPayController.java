@@ -157,7 +157,11 @@ public class WxPayController {
             //解析xml
              XStream stream = new XStream(new DomDriver());
             stream.alias("xml", WxPaySendData.class);
-            WxPaySendData wxReturnData = (WxPaySendData)stream.fromXML(strResult);
+            Object obj = stream.fromXML(strResult);
+
+            System.out.println("Object: " + obj);
+
+            WxPaySendData wxReturnData = (WxPaySendData)obj;
 
             //两者都为SUCCESS才能获取prepay_id
             if( wxReturnData.getResult_code().equals("SUCCESS") && wxReturnData.getReturn_code().equals("SUCCESS") ){
