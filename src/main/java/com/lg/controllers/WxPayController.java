@@ -63,7 +63,7 @@ public class WxPayController {
         System.out.println("授权code:" + code);
 
         // 获取用户信息
-//        WeixinLoginUser weixinLoginUser = getWeixinLoginUser(code);
+        WeixinLoginUser weixinLoginUser = getWeixinLoginUser(code);
 //
 //        modelAndView.addObject("openId",weixinLoginUser.getOpenID());
 //
@@ -103,6 +103,9 @@ public class WxPayController {
         Oauth oauth = new Oauth();
         // 由code获取access_token等信息
         String str = oauth.getToken(code,WechatConst.appID, WechatConst.appSecret);
+
+        System.out.println("由code获取access_token等信息" + str );
+
         // 解析返回的json数据,获取所需的信息
         String openID = (String) JSON.parseObject(str, Map.class).get("openid");
         String accessToken = (String) JSON.parseObject(str, Map.class).get("access_token");
@@ -110,6 +113,8 @@ public class WxPayController {
 
         // 用openid,access_token获取用户的信息,返回userinfo对象
         UserInfo userInfo = oauth.getSnsUserInfo(openID, accessToken);
+
+
         // 将用户信息放入登录session中
         WeixinLoginUser weixinLoginUser = new WeixinLoginUser();
         weixinLoginUser.setOpenID(openID);
