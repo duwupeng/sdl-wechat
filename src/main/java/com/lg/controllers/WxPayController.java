@@ -172,9 +172,9 @@ public class WxPayController {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder=factory.newDocumentBuilder();
             Document doc = builder.parse(is);
-            String resultCode= doc.getElementsByTagName("").item(0).getTextContent();
-            String returnCode = doc.getElementsByTagName("").item(0).getTextContent();
-            String prepayId = doc.getElementsByTagName("").item(0).getTextContent();
+            String resultCode= doc.getElementsByTagName("result_code").item(0).getTextContent();
+            String returnCode = doc.getElementsByTagName("return_code").item(0).getTextContent();
+            String prepayId = doc.getElementsByTagName("prepay_id").item(0).getTextContent();
 
             doc.getElementsByTagName("").item(0).getTextContent();
 
