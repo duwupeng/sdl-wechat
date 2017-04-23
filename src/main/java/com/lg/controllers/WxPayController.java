@@ -64,13 +64,12 @@ public class WxPayController {
 
         // 获取用户信息
         WeixinLoginUser weixinLoginUser = getWeixinLoginUser(code);
+        System.out.println(weixinLoginUser);
 //
-//        modelAndView.addObject("openId",weixinLoginUser.getOpenID());
-//
-//        System.out.println("拿到openId:" + weixinLoginUser.getOpenID());
-//
+        modelAndView.addObject("openId",weixinLoginUser.getOpenID());
+//      System.out.println("拿到openId:" + weixinLoginUser.getOpenID());
         // 跳转到支付界面
-        String viewName = "pay";
+        String viewName = "jsapi";
         modelAndView.setViewName(viewName);
         return modelAndView;
     }

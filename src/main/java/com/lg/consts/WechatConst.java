@@ -16,5 +16,5 @@ public interface WechatConst {
 
     String baseUrl="http://www.easygolegal.com.cn";
 
-    int siteID=0;
+    int siteID=1;
 }

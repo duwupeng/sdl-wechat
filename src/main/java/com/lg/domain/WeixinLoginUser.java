@@ -47,4 +47,17 @@ public class WeixinLoginUser implements Serializable {
     public void setSiteID(int siteID) {
         this.siteID = siteID;
     }
+
+
+    @Override
+    public String toString() {
+        return "WeixinLoginUser{" +
+                "openID='" + openID + '\'' +
+                ", unionID='" + unionID + '\'' +
+                ", headImageUrl='" + headImageUrl + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", refreshToken='" + refreshToken + '\'' +
+                ", siteID=" + siteID +
+                '}';
+    }
 }
