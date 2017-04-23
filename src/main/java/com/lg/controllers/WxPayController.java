@@ -199,6 +199,7 @@ public class WxPayController {
                 signMap.put("nonceStr", nonce_str);
                 signMap.put("package", "prepay_id="+prepayId);  //注：看清楚，值为：prepay_id=xxx,别直接放成了wxReturnData.getPrepay_id()
                 signMap.put("signType", "MD5");
+
                 String paySign = WxSign.createSign(signMap,  WechatConst.KEY);//支付签名
 
                 result.setSign(paySign);
