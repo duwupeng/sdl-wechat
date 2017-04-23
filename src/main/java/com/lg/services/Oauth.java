@@ -8,18 +8,21 @@ import com.lg.wechat.util.HttpClientUtil;
  */
 public class Oauth {
 
-    public  static String getToken(String code,String appId, String appSecret){
+    public  static String getToken(String appId, String appSecret,String code){
         String url ="https://api.weixin.qq.com/sns/oauth2/access_token?appid=" +
                 "APPID" +appId+
                 "&secret=" +appSecret+
                 "&code="+code+
                 "&grant_type=authorization_code";
+
+        System.out.println("Oauth url:-> "+ url);
+
         return HttpClientUtil.httpGetRequest(url);
     }
 
     public  static UserInfo getSnsUserInfo(String openID, String accessToken){
         String url ="https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
-        System.out.println("url:-> "+ HttpClientUtil.httpGetRequest(url));
+        System.out.println("UserInfo url:-> "+ HttpClientUtil.httpGetRequest(url));
 
 
         return new UserInfo();

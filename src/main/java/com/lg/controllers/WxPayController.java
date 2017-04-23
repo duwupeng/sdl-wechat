@@ -102,7 +102,7 @@ public class WxPayController {
 //        logger.debug("由code获取授权用户信息");
         Oauth oauth = new Oauth();
         // 由code获取access_token等信息
-        String str = oauth.getToken(code,WechatConst.appID, WechatConst.appSecret);
+        String str = oauth.getToken(WechatConst.appID, WechatConst.appSecret,code);
 
         System.out.println("由code获取access_token等信息" + str );
 
