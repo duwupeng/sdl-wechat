@@ -15,11 +15,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.net.URLEncoder;
 import java.util.Map;
 import java.util.SortedMap;
@@ -155,25 +160,35 @@ public class WxPayController {
             System.out.println("strResult: " + strResult);
 
             //解析xml
-             XStream stream = new XStream(new DomDriver());
-            stream.alias("xml", WxPaySendData.class);
-            Object obj = stream.fromXML(strResult);
+//             XStream stream = new XStream(new DomDriver());
+//            stream.alias("xml", WxPaySendData.class);
+//            Object obj = stream.fromXML(strResult);
+//
+//            System.out.println("Object: " + obj);
+//
+//            WxPaySendData wxReturnData = (WxPaySendData)obj;
+            StringReader sr = new StringReader(strResult);
+            InputSource is = new InputSource(sr);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder=factory.newDocumentBuilder();
+            Document doc = builder.parse(is);
+            String resultCode= doc.getElementsByTagName("").item(0).getTextContent();
+            String returnCode = doc.getElementsByTagName("").item(0).getTextContent();
+            String prepayId = doc.getElementsByTagName("").item(0).getTextContent();
 
-            System.out.println("Object: " + obj);
-
-            WxPaySendData wxReturnData = (WxPaySendData)obj;
+            doc.getElementsByTagName("").item(0).getTextContent();
 
             //两者都为SUCCESS才能获取prepay_id
-            if( wxReturnData.getResult_code().equals("SUCCESS") && wxReturnData.getReturn_code().equals("SUCCESS") ){
+            if( resultCode.equals("SUCCESS") && returnCode.equals("SUCCESS") ){
                         //业务逻辑，写入订单日志(你自己的业务) .....
                 String timeStamp = WeChatUtil.getTimeStamp();//时间戳
                 String nonce_str = WeChatUtil.getNonceStr();//随机字符串
         //注：上面这两个参数，一定要拿出来作为后续的value，不能每步都创建新的时间戳跟随机字符串，不然H5调支付API，会报签名参数错误
-                result.setResult_code(wxReturnData.getResult_code());
+                result.setResult_code(resultCode);
                 result.setAppid(WechatConst.appID);
                 result.setTimeStamp(timeStamp);
                 result.setNonce_str(nonce_str);
-                result.setPackageStr("prepay_id="+wxReturnData.getPrepay_id());
+                result.setPackageStr("prepay_id="+prepayId);
                 result.setSignType("MD5");
 
         //                WeChatUtil.unifiedorder(1) 下单操作中，也有签名操作，那个只针对统一下单，要区别于下面的paySign
@@ -182,7 +197,7 @@ public class WxPayController {
                 signMap.put("appId", WechatConst.appID);
                 signMap.put("timeStamp", timeStamp);
                 signMap.put("nonceStr", nonce_str);
-                signMap.put("package", "prepay_id="+wxReturnData.getPrepay_id());  //注：看清楚，值为：prepay_id=xxx,别直接放成了wxReturnData.getPrepay_id()
+                signMap.put("package", "prepay_id="+prepayId);  //注：看清楚，值为：prepay_id=xxx,别直接放成了wxReturnData.getPrepay_id()
                 signMap.put("signType", "MD5");
                 String paySign = WxSign.createSign(signMap,  WechatConst.KEY);//支付签名
 

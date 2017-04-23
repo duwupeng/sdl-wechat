@@ -4,10 +4,14 @@ import com.lg.wechat.model.message.req.WxPaySendData;
 import com.lg.wechat.model.message.req.WxPrepayData;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.StringReader;
 import java.util.Iterator;
 import java.util.Map;
@@ -56,11 +60,18 @@ public class WxSign {
                 "</xml>";
 
         //解析xml
-        XStream stream = new XStream(new DomDriver());
-        stream.alias("xml", WxPaySendData.class);
-        WxPaySendData wxReturnData = (WxPaySendData)stream.fromXML(xml);
+        StringReader sr = new StringReader(xml);
+        InputSource is = new InputSource(sr);
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder=factory.newDocumentBuilder();
+        Document doc = builder.parse(is);
+        String resultCode= doc.getElementsByTagName("prepay_id").item(0).getTextContent();
+        String returnCode = doc.getElementsByTagName("sign").item(0).getTextContent();
+        String prepayId = doc.getElementsByTagName("result_code").item(0).getTextContent();
 
-        System.out.println(wxReturnData.getAppid());
+        System.out.println(resultCode);
+        System.out.println(returnCode);
+        System.out.println(prepayId);
 
 //        JAXBContext context = JAXBContext.newInstance(WxPrepayData.class);
 //        Unmarshaller unmarshaller = context.createUnmarshaller();
