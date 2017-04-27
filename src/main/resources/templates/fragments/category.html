@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<!-- category -->
+<div th:fragment="contract_category" class="col-md-3">
+    <div>
+        <p class="lead">合同分类</p>
+        <div class="list-group">
+            <a class="list-group-item" href="contract/买卖合同" th:href="@{/contract/买卖合同}">买卖合同</a>
+            <a class="list-group-item" href="contract/劳动合同" th:href="@{/contract/劳动合同}">劳动合同</a>
+            <a class="list-group-item" href="contract/租房合同" th:href="@{/contract/租房合同}">租房合同</a>
+            <a class="list-group-item" href="contract/身份关系协议" th:href="@{/contract/身份关系协议}">身份关系协议</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

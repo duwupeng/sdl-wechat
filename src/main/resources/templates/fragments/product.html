@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<!-- Footer -->
+<product th:fragment="prod">
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="http://placehold.it/320x150" alt="" th:alt="${prod.title}"/>
+            <div class="caption">
+                <h4 class="pull-right" th:text="${prod.price?:'10.5'}">RMB: 94.99</h4>
+                <h4><a href="租房合同/contract001.doc" th:href="@{prod.href?:'10.5'}" th:text="${prod.title?:'10.5'}">租房合同2017</a>
+                </h4>
+                <p th:text="${prod.description?:'10.5'}">这是一份广东省房屋管理局颁发的最新合同模板。</p>
+            </div>
+            <div class="ratings">
+                <p class="pull-right" th:text="${prod.downloadNumber?:'10.5'}">18 次付费下载</p>
+                <p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</product>
+</body>
+</html>
