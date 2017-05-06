@@ -3,33 +3,22 @@
 <head lang="en">
 
     <title>速达律法律咨询</title>
-
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
+    <div style="margin:10px 5px 15px 20px;"></div>
     <div th:if="${not #lists.isEmpty(contracts)}">
-        <h2>合同列表</h2>
-        <table class="table table-striped">
-            <tr>
-                <!--<th>Id</th>-->
-                <!--<th>Product Id</th>-->
-                <!--<th>Description</th>-->
-                <!--<th>Price</th>-->
-                <!--<th>View</th>-->
-                <!--<th>Edit</th>-->
-            </tr>
-            <tr th:each="contract : ${contracts}">
-                <!--<td th:text="${product.id}"><a href="/product/${product.id}">Id</a></td>-->
-                <!--<td th:text="${product.productId}">Product Id</td>-->
-                <!--<td th:text="${product.description}">descirption</td>-->
-                <!--<td th:text="${product.price}">price</td>-->
-                <!--<td><a th:href="${ '/product/' + product.id}">View</a></td>-->
-                <td><a th:href="${'/contract/download/'} + ${category} + ${'/'} + ${contract}">
-                    <p class="form-control-static" th:text="${contract}">x</p>
-                </a></td>
-            </tr>
-        </table>
-
+        <div class="col-md-3">
+            <p class="lead">合同分类</p>
+            <div class="list-group">
+                <a th:each="contract : ${contracts}"
+                   th:href="${'/contract/download/'} + ${category} + ${'/'} + ${contract}"
+                   class="list-group-item">
+                    <p th:value="${contract}" th:text="${contract}"></p>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

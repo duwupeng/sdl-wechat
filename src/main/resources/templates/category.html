@@ -11,40 +11,13 @@
 <div class="container">
     <div style="margin:10px 5px 15px 20px;"></div>
     <div th:if="${not #lists.isEmpty(categories)}">
-        <h2>合同分类</h2>
-        <table class="table table-striped">
-            <tr>
-                <!--<th>Id</th>-->
-                <!--<th>Product Id</th>-->
-                <!--<th>Description</th>-->
-                <!--<th>Price</th>-->
-                <!--<th>View</th>-->
-                <!--<th>Edit</th>-->
-            </tr>
-            <tr th:each="category : ${categories}">
-                <!--<td th:text="${product.id}"><a href="/product/${product.id}">Id</a></td>-->
-                <!--<td th:text="${product.productId}">Product Id</td>-->
-                <!--<td th:text="${product.description}">descirption</td>-->
-                <!--<td th:text="${product.price}">price</td>-->
-                <!--<td><a th:href="${ '/product/' + product.id}">View</a></td>-->
-                <td><a th:href="${'/contract/'} + ${category.key}">
-                    <p class="form-control-static" th:value="${category.key}" th:text="${category.value}">x</p>
-                </a></td>
-            </tr>
-        </table>
-        <a href="toPay" > <font size="12">确定下载合同</font> </a>
-
-
-
-        <div th:if="${not #lists.isEmpty(categories)}">
-            <div class="col-md-3">
-                <p class="lead">合同分类</p>
-                <div class="list-group">
-                    <a th:each="category : ${categories}"
-                       th:href="${'/contract/'} + ${category.key}" class="list-group-item">
-                        <p th:value="${category.key}" th:text="${category.value}"></p>
-                    </a>
-                </div>
+        <div class="col-md-3">
+            <p class="lead">合同分类</p>
+            <div class="list-group">
+                <a th:each="category : ${categories}"
+                   th:href="${'/contract/'} + ${category.key}" class="list-group-item">
+                    <p th:value="${category.key}" th:text="${category.value}"></p>
+                </a>
             </div>
         </div>
     </div>
